@@ -2,6 +2,10 @@
   <div class="card-body">
     <h3 class="card-title text-center">Personen</h3>
     <hr>
+      <%= render "people/people_search_form" %>
+    <hr>
+    <div id="people">
       <%= render partial: "people/person", collection: people, as: :person %>
+    </div>
   </div>
 </div>

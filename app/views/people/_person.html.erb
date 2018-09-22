@@ -8,6 +8,14 @@
     <b>e-Mail:</b> <%= mail_to person.email %>
 </p>
 
+<% unless person.tag_list.empty? %>
+  <p>
+    <% person.tag_list.each do |tag| %>
+      <button type="button" class="btn btn-outline-dark"><%= tag %></button>
+    <% end %>
+  </p>
+<% end %>
+
 <p>
   <a class="btn btn-link btn-sm" data-toggle="collapse" href="#note-<%= person.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
     <%= fa_icon "sticky-note" %> Notizen anzeigen

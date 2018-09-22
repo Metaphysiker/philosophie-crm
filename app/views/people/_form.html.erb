@@ -1,46 +1,17 @@
-<%= form_with(model: person, local: true) do |form| %>
-  <% if person.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(person.errors.count, "error") %> prohibited this person from being saved:</h2>
+<%= simple_form_for person do |f| %>
+  <%= f.input :firstname %>
+  <%= f.input :lastname %>
+  <%= f.input :email %>
+  <%= f.input :phone %>
 
-      <ul>
-      <% person.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :firstname %>
-    <%= form.text_field :firstname %>
-  </div>
-
-  <div class="field">
-    <%= form.label :lastname %>
-    <%= form.text_field :lastname %>
-  </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone %>
-  </div>
-
-  <%= form.collection_check_boxes(:tag_list, TagList.all , :name, :name) do |b| %>
+  Tags<br>
+  <%= f.collection_check_boxes(:tag_list, TagList.all , :name, :name) do |b| %>
     <!-- FYI: I use Bootstrap 4, so I customized how the checkboxes would render -->
     <div class="form-check">
       <label class="form-check-label"><%= b.check_box class: 'form-check-input' %><%= b.value %></label>
     </div>
   <% end %>
-
-
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <br>
+  <br>
+  <%= f.button :submit %>
 <% end %>

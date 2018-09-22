@@ -1,0 +1,7 @@
+$( "#people" ).fadeOut( "slow", function() {
+
+    x = $("<%= escape_javascript( render partial: 'people/person', collection: @people, as: :person ) %>")
+
+    $("#people").empty().append(x).fadeIn("slow");
+
+});

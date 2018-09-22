@@ -7,11 +7,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create(
+    username: "Sandro",
     email: "sandro.raess@philosophie.ch",
     password: 123456
 )
 
 User.create(
+    username: "Anja",
     email: "anja.leser@philosophie.ch",
     password: 123456
 )
@@ -21,5 +23,9 @@ TagList.create(
 )
 
 TagList.create(
-  name: "Medien"
+  name: "Medienkontakt"
+)
+
+TagList.create(
+  name: "Kooperationspartner"
 )

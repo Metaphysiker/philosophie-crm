@@ -61,6 +61,21 @@ class PeopleController < ApplicationController
     end
   end
 
+  def people_search
+    search_term = params[:search]
+
+    if search_term.nil? || search_term.empty?
+      @people = Person.all
+    else
+      @people = Person.search_people(search_term)
+    end
+
+    respond_to do |format|
+      format.js
+    end
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_person
@@ -71,4 +86,5 @@ class PeopleController < ApplicationController
     def person_params
       params.require(:person).permit(:firstname, :lastname, :email, :phone, :tag_list => [])
     end
+
 end

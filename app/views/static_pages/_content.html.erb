@@ -6,4 +6,22 @@
     <div class="tab-pane fade" id="list-notes" role="tabpanel">
       <%= render "notes/notes", notes: notes %>
     </div>
+
+    <div class="tab-pane fade" id="list-tags" role="tabpanel">
+      <%= render "tag_lists/tag_lists", tag_lists: tag_lists %>
+    </div>
+
+    <div class="tab-pane fade" id="list-team" role="tabpanel">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h3 class="card-title text-center">Team</h3>
+          <hr>
+          <% User.all.each do |user| %>
+            <%= user.username %> - <%= user.email %>
+            <hr>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
 </div>

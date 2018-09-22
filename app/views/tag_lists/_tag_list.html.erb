@@ -1,0 +1,6 @@
+<p>
+  <button type="button" class="btn btn-outline-dark"><%= tag_list.name %></button>
+  -
+  Personen mit diesem Tag: <%= Person.tagged_with(tag_list.name).count %>
+</p>
+<hr>

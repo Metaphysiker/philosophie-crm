@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+gem 'pg_search'
 gem 'acts-as-taggable-on', '~> 6.0'
 gem "font-awesome-rails"
 gem 'devise'
