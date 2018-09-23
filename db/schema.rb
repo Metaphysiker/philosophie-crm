@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2018_09_22_233153) do
 
   create_table "notes", force: :cascade do |t|
     t.text "description"
+    t.integer "creator_id"
     t.string "noteable_type"
     t.bigint "noteable_id"
     t.datetime "created_at", null: false

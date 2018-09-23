@@ -3,6 +3,6 @@
 </p>
 <br>
 <p>
-  <b>Erstellt:</b> <%= note.created_at.strftime("%d-%m-%Y | %H:%M") %>
+  <b>Erstellt:</b> <%= note.created_at.strftime("%d-%m-%Y | %H:%M") %>  - von <b><%= User.find(note.creator_id).username unless !User.exists?(note.creator_id) %></b>
 </p>
 <hr>

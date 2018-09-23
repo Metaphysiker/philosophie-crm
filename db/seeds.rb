@@ -29,3 +29,23 @@ TagList.create(
 TagList.create(
   name: "Kooperationspartner"
 )
+
+TagList.create(
+  name: "Stiftungsmitglied"
+)
+
+TagList.create(
+  name: "Portalmitglied"
+)
+
+TagList.create(
+  name: "Veranstalter"
+)
+
+TagList.create(
+  name: "Lehrer"
+)
+
+TagList.create(
+  name: "Öffentliche Institution"
+)
