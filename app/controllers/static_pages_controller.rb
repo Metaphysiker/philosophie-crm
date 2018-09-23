@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
   end
 
   def main
-    @people = Person.all.includes(:notes)
+    @people = Person.includes(:notes).last(20) #Person.all.includes(:notes)
     @notes = Note.all.order(:created_at).reverse_order
     @tag_lists = TagList.all
     @tasks = Task.all

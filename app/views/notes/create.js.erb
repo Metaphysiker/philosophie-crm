@@ -1,0 +1,7 @@
+$( "#note-<%= @note.noteable.id %>" ).fadeOut( "slow", function() {
+
+    x = $("<%= escape_javascript( render "notes/notes_of_a_thing", person: @note.noteable ) %>")
+
+    $("#note-<%= @note.noteable.id %>").empty().append(x).fadeIn("slow");
+
+});

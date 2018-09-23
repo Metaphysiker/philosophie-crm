@@ -26,49 +26,13 @@
   </a>
 
 </p>
+
 <div class="collapse mb-2" id="note-<%= person.id %>" %>
-  <h3 class="card-title">Notizen: </h3>
-  <div class="card card-body mb-1">
-
-    <% if person.notes.empty? %>
-      Keine Notizen vorhanden.
-    <% else %>
-      <%= render partial: "notes/note", collection: person.notes, as: :note %>
-    <% end %>
-  </div>
-
-  <div class="card card-body mb-1">
-    <p>
-      <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#note-<%= person.id %>-new">
-        <%= fa_icon "plus" %>  Notiz hinzufügen
-      </button>
-    </p>
-    <div class="collapse" id="note-<%= person.id %>-new">
-      <%= render "notes/form", note: Note.new, parent: person %>   <%#= render "notes/form", note: Note.new, parent: person %>
-    </div>
-  </div>
+  <%= render "notes/notes_of_a_thing", person: person %>
 </div>
 
 <div class="collapse" id="task-<%= person.id %>" %>
-  <h3 class="card-title">Aufgaben: </h3>
-  <div class="card card-body mb-1">
-    <% if person.tasks.empty? %>
-      Keine Aufgaben vorhanden.
-    <% else %>
-      <%= render partial: "tasks/task", collection: person.tasks, as: :task %>
-    <% end %>
-  </div>
-
-  <div class="card card-body mb-1">
-    <p>
-      <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#task-<%= person.id %>-new">
-        <%= fa_icon "plus" %>  Aufgabe hinzufügen
-      </button>
-    </p>
-    <div class="collapse" id="task-<%= person.id %>-new">
-      <%= render "tasks/form", task: Task.new, parent: person %>   <%#= render "notes/form", note: Note.new, parent: person %>
-    </div>
-  </div>
+  <%= render "tasks/tasks_of_a_thing", parent: person %>
 </div>
 
 <hr>

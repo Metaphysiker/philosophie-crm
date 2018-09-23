@@ -1,0 +1,7 @@
+$( "#task-<%= @task.taskable.id %>" ).fadeOut( "slow", function() {
+
+    x = $("<%= escape_javascript( render "tasks/tasks_of_a_thing", parent: @task.taskable ) %>")
+
+    $("#task-<%= @task.taskable.id %>").empty().append(x).fadeIn("slow");
+
+});

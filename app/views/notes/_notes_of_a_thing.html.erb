@@ -1,0 +1,19 @@
+<h3 class="card-title">Notizen: </h3>
+<div class="card card-body mb-1">
+
+  <% if person.notes.empty? %>
+    Keine Notizen vorhanden.
+    <hr>
+  <% else %>
+    <%= render partial: "notes/note", collection: person.notes, as: :note %>
+  <% end %>
+
+  <p>
+    <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#note-<%= person.id %>-new">
+      <%= fa_icon "plus" %>  Notiz hinzufügen
+    </button>
+  </p>
+  <div class="collapse" id="note-<%= person.id %>-new">
+    <%= render "notes/form", note: Note.new, parent: person %>   <%#= render "notes/form", note: Note.new, parent: person %>
+  </div>
+</div>

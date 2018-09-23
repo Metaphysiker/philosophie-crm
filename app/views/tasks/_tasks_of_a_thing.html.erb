@@ -1,0 +1,17 @@
+<h3 class="card-title">Aufgaben: </h3>
+
+  <% if parent.tasks.empty? %>
+    Keine Aufgaben vorhanden.
+    <hr>
+  <% else %>
+    <%= render partial: "tasks/task", collection: parent.tasks, as: :task %>
+  <% end %>
+
+  <p>
+    <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#task-<%= parent.id %>-new">
+      <%= fa_icon "plus" %>  Aufgabe hinzufügen
+    </button>
+  </p>
+  <div class="collapse" id="task-<%= parent.id %>-new">
+    <%= render "tasks/form", task: Task.new, parent: parent %>   <%#= render "notes/form", note: Note.new, parent: parent %>
+  </div>

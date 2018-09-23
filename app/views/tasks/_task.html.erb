@@ -1,8 +1,26 @@
+<div class="border rounded mb-3 p-2">
 <p>
   <%= task.description %>
 </p>
-<br>
+<hr>
+
+<p>
+  <b>Priorität:</b>
+  <% if task.priority == 1 %>
+    <button type="button" class="btn btn-secondary"><%= task.priority %></button>
+  <% elsif task.priority == 2 %>
+    <button type="button" class="btn btn-info"><%= task.priority %></button>
+  <% elsif task.priority == 3 %>
+    <button type="button" class="btn btn-danger"><%= task.priority %></button>
+  <% end %>
+</p>
+<p>
+  <b>Zuständig:</b> <%= User.find(task.assigned_to_user_id).username unless !User.exists?(task.assigned_to_user_id) %>
+</p>
+<p>
+  <b>Deadline:</b> <%= task.deadline.strftime("%d-%m-%Y | %H:%M") unless task.deadline.nil? %>
+</p>
 <p>
   <b>Erstellt:</b> <%= task.created_at.strftime("%d-%m-%Y | %H:%M") %>
 </p>
-<hr>
+</div>

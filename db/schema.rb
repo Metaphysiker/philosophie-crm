@@ -78,6 +78,10 @@ ActiveRecord::Schema.define(version: 2018_09_22_233153) do
 
   create_table "tasks", force: :cascade do |t|
     t.text "description"
+    t.datetime "deadline"
+    t.integer "priority"
+    t.integer "assigned_to_user_id"
+    t.integer "creator_id"
     t.string "taskable_type"
     t.bigint "taskable_id"
     t.datetime "created_at", null: false
