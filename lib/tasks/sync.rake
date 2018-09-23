@@ -72,15 +72,13 @@ namespace :sync do
     societies.each do |s|
       society = OpenStruct.new(s)
 
-      Account.create(
+      Institution.create(
         name: society.name,
-        access: "Public",
-        created_at: society.created_at,
         philosophie_society_id: society.id
       )
       society.profiles.each do |p|
         puts p["id"]
-        Person.find_by_philosophie_id(p["id"]).account = Account.find_by_philosophie_society_id(society.id) unless Person.find_by_philosophie_id(p["id"]).nil?
+        Person.find_by_philosophie_id(p["id"]).institutions << Institution.find_by_philosophie_society_id(society.id) unless Person.find_by_philosophie_id(p["id"]).nil?
       end
     end
 

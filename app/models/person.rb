@@ -4,6 +4,9 @@ class Person < ApplicationRecord
   has_many :notes, as: :noteable
   has_many :tasks, as: :taskable
 
+  has_many :affiliations
+  has_many :institutions, :through => :affiliations
+
   validates :email, uniqueness: true
 
   acts_as_taggable
