@@ -2,6 +2,7 @@ class Person < ApplicationRecord
   has_paper_trail
 
   has_many :notes, as: :noteable
+  has_many :tasks, as: :taskable
 
   validates :email, uniqueness: true
 
@@ -10,7 +11,17 @@ class Person < ApplicationRecord
   include PgSearch
   pg_search_scope :search_people, :against => [:firstname, :lastname, :email, :phone, :login],
                                   :using => {
-                                    :tsearch => {:prefix => true}
+                                    :tsearch => {:prefix => true, :any_word => true}
+                                  }
+
+  pg_search_scope :search_people_trigram, :against => [:firstname, :lastname, :email, :phone, :login],
+                                  :using => {
+                                    :trigram => {
+                                      :threshold => 0.1
+                                    },
+                                    :tsearch => {
+                                      :prefix => true
+                                    }
                                   }
   #multisearchable :against => [:firstname, :lastname, :email, :phone, :login]
 

@@ -67,7 +67,7 @@ class PeopleController < ApplicationController
     if search_term.nil? || search_term.empty?
       @people = Person.all
     else
-      @people = Person.search_people(search_term)
+      @people = Person.search_people_trigram(search_term)
     end
 
     respond_to do |format|
