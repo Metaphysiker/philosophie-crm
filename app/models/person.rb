@@ -13,6 +13,8 @@ class Person < ApplicationRecord
 
   acts_as_taggable
 
+  scope :search_people_ilike, ->(search_term) { where("firstname ILIKE ? OR lastname ILIKE ? OR email ILIKE ? OR phone ILIKE ? OR login ILIKE ?", search_term, search_term, search_term, search_term, search_term) }
+
   include PgSearch
   pg_search_scope :search_people, :against => [:firstname, :lastname, :email, :phone, :login],
                                   :using => {

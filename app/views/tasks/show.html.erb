@@ -1,14 +1,7 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Description: </strong>
-  <%= @task.description %>
-</p>
-
-<p>
-  <strong>Description: </strong>
-  <%= @task.inspect %>
-</p>
-
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+<div class="container">
+  <div class="card mb-3">
+    <div class="card-body">
+        <%= render "tasks/task_with_parent", task: @task %>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,5 @@
+<a name="top"/>
+
 <div class="list-group" id="list-tab" role="tablist">
   <a class="list-group-item text-center">
     <h3>Übersicht</h3>
@@ -119,3 +121,14 @@
   </a>
 
 </div>
+
+<script>
+  function scrollToAnchor(aid){
+    var aTag = $("a[name='"+ aid +"']");
+    $('html,body').animate({scrollTop: aTag.offset().top},'slow');
+  }
+
+  $(".list-group-item").click(function() {
+   scrollToAnchor('top');
+  });
+</script>

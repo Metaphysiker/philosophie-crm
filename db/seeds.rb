@@ -18,6 +18,18 @@ User.create(
     password: 123456
 )
 
+User.create(
+    username: "Sahra",
+    email: "sahra.styger@philosophie.ch",
+    password: 123456
+)
+
+User.create(
+    username: "Benjamin",
+    email: "benjamin.ilg@philosophie.ch",
+    password: 123456
+)
+
 tags = ["Sponsor", "Medienkontakt","Kooperationspartner", "Stiftungsmitglied",
         "Portalmitglied", "Veranstalter", "Lehrperson", "Öffentliche Institution",
       "Blogger", "Platinmitglied", "200er-Mitglied", "Patronatskomitee"]

@@ -1,24 +1,7 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Firstname:</strong>
-  <%= @person.firstname %>
-</p>
-
-<p>
-  <strong>Lastname:</strong>
-  <%= @person.lastname %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @person.email %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @person.phone %>
-</p>
-
-<%= link_to 'Edit', edit_person_path(@person) %> |
-<%= link_to 'Back', people_path %>
+<div class="container">
+  <div class="card mb-3">
+    <div class="card-body">
+        <%= render "people/person", person: @person %>
+    </div>
+  </div>
+</div>

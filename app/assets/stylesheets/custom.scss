@@ -3,6 +3,18 @@
     border-color: gray !important;//#DCDCDC !important;
 }
 
+.browser-window {
+  height: 60vh !important;
+  overflow-y: scroll;
+}
+
+.stayput {
+    position: fixed;
+    left: 0;
+    overflow-y: scroll;
+    //view-source:https://getbootstrap.com/docs/4.1/examples/dashboard/dashboard.css
+}
+
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #3498db; /* Blue */

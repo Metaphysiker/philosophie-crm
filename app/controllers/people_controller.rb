@@ -4,7 +4,7 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-    @people = Person.all
+    @people = Person.last(20)
   end
 
   # GET /people/1
@@ -68,7 +68,8 @@ class PeopleController < ApplicationController
     if search_term.nil? || search_term.empty?
       @people = Person.all
     else
-      @people = Person.search_people_trigram(search_term)
+      #@people = Person.search_people_trigram(search_term)
+      @people = Person.search_people_ilike("%#{search_term}%")
     end
 
     respond_to do |format|

@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :notes
   resources :people
+
+  get 'users/:id', to: 'users#show', as: 'user'
+
   root 'static_pages#main'
 
   get 'upload_page', to: 'import#upload_page', as: 'upload_page'

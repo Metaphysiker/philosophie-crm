@@ -35,7 +35,7 @@
           <h3 class="card-title text-center">Team</h3>
           <hr>
           <% User.all.each do |user| %>
-            <%= user.username %> - <%= user.email %>
+            <%= link_to "#{user.username} - #{user.email}", user_path(user) %>
             <hr>
           <% end %>
         </div>
