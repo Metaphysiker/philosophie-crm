@@ -5,7 +5,9 @@ class Institution < ApplicationRecord
   has_many :notes, as: :noteable
   has_many :tasks, as: :taskable
 
-scope :search_institutions_ilike, ->(search_term) { where("name ILIKE ?", search_term) }
+  acts_as_taggable
+
+  scope :search_institutions_ilike, ->(search_term) { where("name ILIKE ?", search_term) }
 
   include PgSearch
   pg_search_scope :search_institutions, :against => [:name],

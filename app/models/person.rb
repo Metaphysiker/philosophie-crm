@@ -51,7 +51,10 @@ class Person < ApplicationRecord
   def self.create_or_update_person(person, tags, institutions)
 
     person = person.select!{|x| Person.attribute_names.index(x)}
-    if Person.where(email: person["email"]).nil?
+    puts person["email"]
+    if person["email"].nil? || person["email"].blank?
+      return
+    elsif Person.where(email: person["email"]).empty?
       person = Person.create(person)
     else
       Person.find_by_email(person["email"]).update(person)

@@ -1,9 +1,13 @@
 <p class="card-text">
     <b>Name:</b> <%= link_to "#{person.firstname} #{person.lastname}", person_path(person) %>
 </p>
-<p class="card-text">
-    <b>Login:</b> <%= link_to person.login, person_path(person) %>
-</p>
+
+<% unless person.login.nil? %>
+  <p class="card-text">
+      <b>Login:</b> <%= link_to person.login, person_path(person) %>
+  </p>
+<% end %>
+
 <p class="card-text">
     <b>e-Mail:</b> <%= mail_to person.email %>
 </p>
