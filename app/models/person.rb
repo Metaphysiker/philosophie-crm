@@ -7,7 +7,9 @@ class Person < ApplicationRecord
   has_many :affiliations
   has_many :institutions, :through => :affiliations
 
+  validates :email, presence: true
   validates :email, uniqueness: true
+
 
   acts_as_taggable
 
@@ -44,33 +46,26 @@ class Person < ApplicationRecord
     !self.philosophie_id.nil?
   end
 
-  def self.people_import(file)
-    CSV.foreach(file.path, headers: true) do |row|
-      create_or_update_person(row.to_hash, row["tag"].split(' | '), nil)
+  def self.create_or_update_person(person, tags, institutions)
+
+    person = person.select!{|x| Person.attribute_names.index(x)}
+    if Person.where(email: person["email"]).nil?
+      person = Person.create(person)
+    else
+      Person.find_by_email(person["email"]).update(person)
+      person = Person.find_by_email(person["email"])
     end
-  end
 
-end
+    unless tags.blank?
+      puts tags.inspect
+      person.tag_list.add(tags)
+      person.save
+    end
 
-private
-
-def create_or_update_person(person, tags, institutions)
-
-  person = person.select!{|x| Person.attribute_names.index(x)}
-  unless Person.where(email: person["email"]).nil?
-    person = Person.create(person)
-  else
-    person = Person.where(email: person["email"]).first.update(person)
-  end
-
-  unless tags.blank?
-    person.tag_list.add(tags)
-    person.save
-  end
-
-  unless institutions.nil?
-    institutions.each do |institution|
-      person.institutions << Institution.find(institution)
+    unless institutions.nil?
+      institutions.each do |institution|
+        person.institutions << Institution.find(institution)
+      end
     end
   end
 
