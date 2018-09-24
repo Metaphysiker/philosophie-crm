@@ -20,7 +20,7 @@ class Person < ApplicationRecord
   pg_search_scope :search_people_trigram, :against => [:firstname, :lastname, :email, :phone, :login],
                                   :using => {
                                     :trigram => {
-                                      :threshold => 0.1
+                                      :threshold => 0.3
                                     },
                                     :tsearch => {
                                       :prefix => true
@@ -30,5 +30,26 @@ class Person < ApplicationRecord
 
   def member_of_portal?
     !self.philosophie_id.nil?
+  end
+
+  def self.people_import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+    p = Person.create(
+        firstname: row["firstname"],
+        lastname: row["lastname"],
+        email: row["email"],
+        phone: row["phone"]
+      )
+      unless row["tag"].blank?
+        p.tag_list.add(row["tag"].split)
+        p.save
+      end
+    end
+
+    #people = []
+    #CSV.foreach(file.path, headers: true) do |row|
+    #  people << Person.new(row.to_h)
+    #end
+    #Person.import people, recursive: true
   end
 end

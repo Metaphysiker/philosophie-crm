@@ -1,0 +1,15 @@
+<div class="container">
+  <h4>Personen importieren</h4>
+  <p>
+    <b>CSV benötigt folgende Header: </b>
+    <br>
+    firstname | lastname | email | phone | tag
+  </p>
+  <%= form_tag import_people_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <br>
+    <br>
+    <%= submit_tag "Importieren" %>
+  <% end %>
+
+</div>

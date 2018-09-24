@@ -8,10 +8,20 @@
     <b>e-Mail:</b> <%= mail_to person.email %>
 </p>
 
+<% unless person.institutions.empty? %>
+  <p> <b>Ist Mitglied bei:</b>
+    <ul>
+    <% person.institutions.each do |institution| %>
+      <li><button type="button" class="btn btn-link"><%= institution.name %></button></li>
+    <% end %>
+  </ul>
+  </p>
+<% end %>
+
 <% unless person.tag_list.empty? %>
   <p>
     <% person.tag_list.each do |tag| %>
-      <button type="button" class="btn btn-outline-dark"><%= tag %></button>
+      <button type="button" class="btn btn-outline-dark m-1"><%= tag %></button>
     <% end %>
   </p>
 <% end %>
@@ -28,7 +38,7 @@
 </p>
 
 <div class="collapse mb-2" id="note-<%= person.id %>" %>
-  <%= render "notes/notes_of_a_thing", person: person %>
+  <%= render "notes/notes_of_a_thing", parent: person %>
 </div>
 
 <div class="collapse" id="task-<%= person.id %>" %>

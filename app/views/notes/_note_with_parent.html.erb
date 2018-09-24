@@ -1,4 +1,7 @@
 <div class="card mb-3">
+  <div class="card-header">
+    <%= note.noteable.firstname %> <%= note.noteable.lastname %> - <%= note.noteable_type %>
+  </div>
   <div class="card-body">
     <p class="card-text">
       <%= simple_format(note.description) %>

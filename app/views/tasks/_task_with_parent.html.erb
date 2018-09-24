@@ -1,30 +1,31 @@
-<div class="border rounded mb-3 p-2">
-<h3>
-  <%= task.taskable.firstname %> <%= task.taskable.lastname %> - <%= task.taskable_type %>
-</h3>
-<hr>
-<p>
-  <%= task.description %>
-</p>
-<hr>
-
-<p>
-  <b>Priorität:</b>
-  <% if task.priority == 1 %>
-    <button type="button" class="btn btn-secondary"><%= task.priority %></button>
-  <% elsif task.priority == 2 %>
-    <button type="button" class="btn btn-info"><%= task.priority %></button>
-  <% elsif task.priority == 3 %>
-    <button type="button" class="btn btn-danger"><%= task.priority %></button>
-  <% end %>
-</p>
-<p>
-  <b>Zuständig:</b> <%= User.find(task.assigned_to_user_id).username unless !User.exists?(task.assigned_to_user_id) %>
-</p>
-<p>
-  <b>Deadline:</b> <%= task.deadline.strftime("%d-%m-%Y | %H:%M") unless task.deadline.nil? %>
-</p>
-<p>
-  <b>Erstellt:</b> <%= task.created_at.strftime("%d-%m-%Y | %H:%M") %> - von <b><%= User.find(task.creator_id).username unless !User.exists?(task.creator_id) %></b>
-</p>
+<div class="card mb-3">
+  <div class="card-header">
+      <%= task.taskable.firstname %> <%= task.taskable.lastname %> - <%= task.taskable_type %>
+  </div>
+  <div class="card-body">
+    <p class="card-text">
+      <%= simple_format(task.description) %>
+    </p>
+  </div>
+  <div class="card-footer">
+    <p>
+      <b>Priorität:</b>
+      <% if task.priority == 1 %>
+        <button type="button" class="btn btn-secondary"><%= task.priority %></button>
+      <% elsif task.priority == 2 %>
+        <button type="button" class="btn btn-info"><%= task.priority %></button>
+      <% elsif task.priority == 3 %>
+        <button type="button" class="btn btn-danger"><%= task.priority %></button>
+      <% end %>
+    </p>
+    <p>
+      <b>Zuständig:</b> <%= User.find(task.assigned_to_user_id).username unless !User.exists?(task.assigned_to_user_id) %>
+    </p>
+    <p>
+      <b>Deadline:</b> <%= task.deadline.strftime("%d.%m.%Y %H:%M") unless task.deadline.nil? %>
+    </p>
+    <p>
+      <b>Erstellt:</b> <%= task.created_at.strftime("%d.%m.%Y %H:%M") %> - von <b><%= User.find(task.creator_id).username unless !User.exists?(task.creator_id) %></b>
+    </p>
+  </div>
 </div>

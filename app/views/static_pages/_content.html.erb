@@ -4,14 +4,20 @@
     </div>
 
     <div class="tab-pane fade" id="list-notes" role="tabpanel">
-      <%= render "notes/notes", notes: notes %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <h3 class="card-title text-center">Notizen</h3>
+          <div id="notes">
+            <%= render partial: "notes/note_with_parent", collection: notes, as: :note %>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="tab-pane fade" id="list-tasks" role="tabpanel">
       <div class="card mb-3">
         <div class="card-body">
           <h3 class="card-title text-center">Aufgaben</h3>
-          <hr>
           <div id="tasks">
             <%= render partial: "tasks/task_with_parent", collection: @tasks, as: :task %>
           </div>
@@ -34,6 +40,19 @@
           <% end %>
         </div>
       </div>
-
     </div>
+
+    <div class="tab-pane fade" id="list-institutions" role="tabpanel">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h3 class="card-title text-center">Institutionen</h3>
+          <hr>
+          <% Institution.all.each do |institution| %>
+            <%= institution.name %> - <%= institution.people.count %> Mitglieder
+            <hr>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
 </div>

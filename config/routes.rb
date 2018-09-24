@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   resources :people
   root 'static_pages#main'
 
+  get 'upload_page', to: 'import#upload_page', as: 'upload_page'
+  post '/import_people', to: 'import#people', as: 'import_people'
+
   get '/people_search_form', to: 'people#people_search', as: 'people_search_form'
 
   #get 'static_pages/welcome'

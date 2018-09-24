@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2018_09_23_165527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
   create_table "affiliations", force: :cascade do |t|

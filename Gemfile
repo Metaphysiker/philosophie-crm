@@ -3,6 +3,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+
+require 'csv'
+require 'activerecord-import/base'
+require 'activerecord-import/active_record/adapters/postgresql_adapter'
+
+gem 'activerecord-import'
 gem 'pg_search'
 gem 'acts-as-taggable-on', '~> 6.0'
 gem "font-awesome-rails"

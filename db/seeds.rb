@@ -18,34 +18,12 @@ User.create(
     password: 123456
 )
 
-TagList.create(
-  name: "Sponsor"
-)
+tags = ["Sponsor", "Medienkontakt","Kooperationspartner", "Stiftungsmitglied",
+        "Portalmitglied", "Veranstalter", "Lehrperson", "Öffentliche Institution",
+      "Blogger", "Platinmitglied", "200er-Mitglied", "Patronatskomitee"]
 
-TagList.create(
-  name: "Medienkontakt"
-)
-
-TagList.create(
-  name: "Kooperationspartner"
-)
-
-TagList.create(
-  name: "Stiftungsmitglied"
-)
-
-TagList.create(
-  name: "Portalmitglied"
-)
-
-TagList.create(
-  name: "Veranstalter"
-)
-
-TagList.create(
-  name: "Lehrer"
-)
-
-TagList.create(
-  name: "Öffentliche Institution"
-)
+tags.each do |tag|
+  TagList.create(
+    name: tag
+  )
+end
