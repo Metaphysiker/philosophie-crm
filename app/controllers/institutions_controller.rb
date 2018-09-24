@@ -64,10 +64,6 @@ class InstitutionsController < ApplicationController
   def institutions_search
     search_term = params[:search_institution]
 
-    puts "SEARCH_TERM!!!!!!!!!!!!!"
-    puts search_term
-    puts search_term.inspect
-
     if search_term.nil? || search_term.empty?
       @institutions = Institution.all
     else

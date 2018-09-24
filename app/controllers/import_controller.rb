@@ -9,6 +9,6 @@ class ImportController < ApplicationController
 
   def people
     Person.people_import(params[:file])
-    redirect_to root_url, notice: "CSV importiert!"
+    redirect_to upload_page_path, notice: "CSV importiert!"
   end
 end

@@ -5,6 +5,12 @@
     <br>
     firstname | lastname | email | phone | tag
   </p>
+  <p>
+    Tags müssen mit einem " | " getrennt werden. Beispiel: Sponsor | Mitglied | Stiftungsmitglied
+  </p>
+  <p>
+    <b>Wichtig!</b> Die Abstände müssen richtig sein. Das geht nicht: Sponsor|  Mitglied |Stiftungsmitglied
+  </p>
   <%= form_tag import_people_path, multipart: true do %>
     <%= file_field_tag :file %>
     <br>

@@ -46,22 +46,32 @@ class Person < ApplicationRecord
 
   def self.people_import(file)
     CSV.foreach(file.path, headers: true) do |row|
-    p = Person.create(
-        firstname: row["firstname"],
-        lastname: row["lastname"],
-        email: row["email"],
-        phone: row["phone"]
-      )
-      unless row["tag"].blank?
-        p.tag_list.add(row["tag"].split)
-        p.save
-      end
+      create_or_update_person(row.to_hash, row["tag"].split(' | '), nil)
     end
-
-    #people = []
-    #CSV.foreach(file.path, headers: true) do |row|
-    #  people << Person.new(row.to_h)
-    #end
-    #Person.import people, recursive: true
   end
+
+end
+
+private
+
+def create_or_update_person(person, tags, institutions)
+
+  person = person.select!{|x| Person.attribute_names.index(x)}
+  unless Person.where(email: person["email"]).nil?
+    person = Person.create(person)
+  else
+    person = Person.where(email: person["email"]).first.update(person)
+  end
+
+  unless tags.blank?
+    person.tag_list.add(tags)
+    person.save
+  end
+
+  unless institutions.nil?
+    institutions.each do |institution|
+      person.institutions << Institution.find(institution)
+    end
+  end
+
 end

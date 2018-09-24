@@ -25,6 +25,7 @@ class PeopleController < ApplicationController
   # POST /people.json
   def create
     @person = Person.new(person_params)
+    puts person_params.inspect
 
     respond_to do |format|
       if @person.save
