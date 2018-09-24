@@ -1,7 +1,9 @@
-$( "#note-<%= @note.noteable.id %>" ).fadeOut( "slow", function() {
+var div_id = "#notes-<%= @note.noteable.id %>-<%= @note.noteable.class.to_s.downcase %>";
+
+$( div_id ).fadeOut( "slow", function() {
 
     x = $("<%= escape_javascript( render "notes/notes_of_a_thing", parent: @note.noteable ) %>")
 
-    $("#note-<%= @note.noteable.id %>").empty().append(x).fadeIn("slow");
+    $(div_id).empty().append(x).fadeIn("slow");
 
 });

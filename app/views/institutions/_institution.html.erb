@@ -1,0 +1,25 @@
+<div class="card mb-3">
+  <div class="card-header">
+    <%= institution.name %>
+  </div>
+  <div class="card-body">
+    <p class="card-text">
+      <b>Anzahl Mitglieder: </b> <%= institution.people.count %>
+    </p>
+    <p class="card-text">
+      <ul>
+        <% institution.people.each do |person| %>
+          <li>
+            <%= link_to "#{person.firstname} #{person.lastname} - #{person.email}", person_path(person) %>
+          </li>
+        <% end %>
+      </ul>
+    </p>
+
+    <%= render "shared/notes_and_tasks", parent: institution %>
+
+  </div>
+  <div class="card-footer">
+    <b>Erstellt:</b> <%= institution.created_at.strftime("%d.%m.%Y %H:%M") %>  - von <b><%#= User.find(note.creator_id).username unless !User.exists?(note.creator_id) %></b>
+  </div>
+</div>

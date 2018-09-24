@@ -1,0 +1,9 @@
+var div_id = "#institutions"
+
+$( div_id ).fadeOut( "slow", function() {
+
+    x = $("<%= escape_javascript( render partial: 'institutions/institution', collection: @institutions, as: :institution ) %>")
+
+    $(div_id).empty().append(x).fadeIn("slow");
+
+});

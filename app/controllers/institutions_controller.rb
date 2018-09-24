@@ -61,6 +61,25 @@ class InstitutionsController < ApplicationController
     end
   end
 
+  def institutions_search
+    search_term = params[:search_institution]
+
+    puts "SEARCH_TERM!!!!!!!!!!!!!"
+    puts search_term
+    puts search_term.inspect
+
+    if search_term.nil? || search_term.empty?
+      @institutions = Institution.all
+    else
+      @institutions = Institution.search_institutions_trigram(search_term)
+    end
+
+    respond_to do |format|
+      format.js
+    end
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_institution

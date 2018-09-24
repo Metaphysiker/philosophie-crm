@@ -7,5 +7,6 @@ class StaticPagesController < ApplicationController
     @notes = Note.all.order(:created_at).reverse_order
     @tag_lists = TagList.all
     @tasks = Task.all
+    @institutions = Institution.all
   end
 end

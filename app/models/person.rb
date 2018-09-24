@@ -28,6 +28,18 @@ class Person < ApplicationRecord
                                   }
   #multisearchable :against => [:firstname, :lastname, :email, :phone, :login]
 
+  def name
+    if self.firstname.blank? && self.lastname.blank?
+      unless self.login.blank?
+        return self.login
+      else
+        return self.email
+      end
+    else
+      return "#{self.firstname} #{self.lastname}"
+    end
+  end
+
   def member_of_portal?
     !self.philosophie_id.nil?
   end

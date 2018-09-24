@@ -1,7 +1,9 @@
-$( "#task-<%= @task.taskable.id %>" ).fadeOut( "slow", function() {
+var div_id = "#tasks-<%= @task.taskable.id %>-<%= @task.taskable.class.to_s.downcase %>";
+
+$( div_id ).fadeOut( "slow", function() {
 
     x = $("<%= escape_javascript( render "tasks/tasks_of_a_thing", parent: @task.taskable ) %>")
 
-    $("#task-<%= @task.taskable.id %>").empty().append(x).fadeIn("slow");
+    $(div_id).empty().append(x).fadeIn("slow");
 
 });

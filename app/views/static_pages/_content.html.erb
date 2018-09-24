@@ -43,16 +43,7 @@
     </div>
 
     <div class="tab-pane fade" id="list-institutions" role="tabpanel">
-      <div class="card mb-3">
-        <div class="card-body">
-          <h3 class="card-title text-center">Institutionen</h3>
-          <hr>
-          <% Institution.all.each do |institution| %>
-            <%= institution.name %> - <%= institution.people.count %> Mitglieder
-            <hr>
-          <% end %>
-        </div>
-      </div>
+        <%= render "institutions/institutions", institutions: institutions %>
     </div>
 
 </div>
