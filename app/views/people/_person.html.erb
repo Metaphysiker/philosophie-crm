@@ -26,23 +26,6 @@
   </p>
 <% end %>
 
-<p>
-  <a class="btn btn-link btn-sm" data-toggle="collapse" href="#notes-<%= person.id %>-<%= person.class.to_s.downcase %>" role="button" aria-expanded="false" aria-controls="collapseExample">
-    <%= fa_icon "sticky-note" %> Notizen anzeigen
-  </a>
-
-  <a class="btn btn-link btn-sm" data-toggle="collapse" href="#tasks-<%= person.id %>-<%= person.class.to_s.downcase %>" role="button" aria-expanded="false" aria-controls="collapseExample">
-    <%= fa_icon "tasks" %>  Aufgaben anzeigen
-  </a>
-
-</p>
-
-<div class="collapse mb-2" id="notes-<%= person.id %>-<%= person.class.to_s.downcase %>" %>
-  <%= render "notes/notes_of_a_thing", parent: person %>
-</div>
-
-<div class="collapse" id="tasks-<%= person.id %>-<%= person.class.to_s.downcase %>" %>
-  <%= render "tasks/tasks_of_a_thing", parent: person %>
-</div>
+<%= render "shared/notes_and_tasks", parent: person %>
 
 <hr>
