@@ -5,7 +5,7 @@ ruby '2.5.1'
 
 
 require 'csv'
-
+gem 'chosen-rails'
 gem 'activerecord-import'
 gem 'pg_search'
 gem 'acts-as-taggable-on', '~> 6.0'

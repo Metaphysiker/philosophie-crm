@@ -13,5 +13,13 @@
   <% end %>
   <br>
   <br>
+  <%= f.input :tag_list,
+                  collection: TagList.all,
+                  include_blank: true,
+                  input_html: { class: 'chosen-select' }
+  %>
+
+  <%= f.input :tag_list, as: :select, collection: TagList.all, label_method: :name, input_html: {class: 'chosen-select', multiple: true} %>
+  <br>
   <%= f.button :submit %>
 <% end %>
