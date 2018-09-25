@@ -1,0 +1,25 @@
+<%= simple_form_for person do |f| %>
+  <%= f.input :firstname %>
+  <%= f.input :lastname %>
+  <%= f.input :email %>
+  <%= f.input :phone %>
+
+  Tags<br>
+  <%= f.collection_check_boxes(:tag_list, TagList.all , :name, :name) do |b| %>
+    <!-- FYI: I use Bootstrap 4, so I customized how the checkboxes would render -->
+    <div class="form-check">
+      <label class="form-check-label"><%= b.check_box class: 'form-check-input' %><%= b.value %></label>
+    </div>
+  <% end %>
+  <br>
+  <br>
+  <%= f.input :tag_list,
+                  collection: TagList.all,
+                  include_blank: true,
+                  input_html: { class: 'chosen-select' }
+  %>
+
+  <%= f.input :tag_list, as: :select, collection: TagList.all, label_method: :name, input_html: {class: 'chosen-select', multiple: true} %>
+  <br>
+  <%= f.button :submit %>
+<% end %>

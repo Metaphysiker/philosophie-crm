@@ -16,7 +16,6 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require jquery.amsify.suggestags
 //= require chosen-jquery
 //= require scaffold
 //= require_tree .
