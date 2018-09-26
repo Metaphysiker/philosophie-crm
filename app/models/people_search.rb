@@ -13,6 +13,12 @@ class PeopleSearch
   def search
     query = Person.all
 
+    unless @institutions.nil? || @institutions.empty?
+      institutions = @institutions.reject { |c| c.blank? }
+      institutions = institutions.collect {|x| x.to_i}
+      query = query.includes(:institutions).where(institutions: {id: institutions})
+    end
+
       unless @tags.nil? || @tags.empty?
         tags = @tags.reject { |c| c.blank? }
         unless tags.empty?
@@ -22,12 +28,6 @@ class PeopleSearch
 
       unless @search_term.nil? || @search_term.blank?
         query = query.search_people_ilike("%#{@search_term}%")
-      end
-
-      unless @institutions.nil? || @institutions.empty?
-        puts query.inspect
-        puts @institutions.pluck(:id).inspect
-        query = query.includes(:institutions).where(institutions: {id: @institutions.pluck(:id)})
       end
 
       query
