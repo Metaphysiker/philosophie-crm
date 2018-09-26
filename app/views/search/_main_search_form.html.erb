@@ -1,0 +1,28 @@
+<%#= form_tag(main_search_form_path, method: "get", remote: true, class: "form-group") do %>
+    <%#= text_field_tag(:main_search, nil, placeholder: "Allgemein suchen", autocomplete: :off, class: "form-control") %>
+    <%#= f.input :tag_list, as: :select, collection: TagList.all, label_method: :name, value_method: :name, input_html: {class: 'chosen-select', multiple: true} %>
+    <%#= submit_tag("Suchen", id: "triggersearch-main", class: "invisible") %>
+<%# end %>
+
+<%= simple_form_for :search_inputs, {url: main_search_form_path, method: :get, remote: true} do |f| %>
+  <%= f.text_field :search_term, placeholder: "Allgemein suchen", autocomplete: :off, class: "form-control" %>
+  <br>
+  <%= f.input :tags, as: :select, collection: TagList.all, label_method: :name, value_method: :name, input_html: {class: 'chosen-select', multiple: true} %>
+  <br>
+  <%= f.input :institutions, as: :select, collection: Institution.all, label_method: :name, value_method: :name, input_html: {class: 'chosen-select', multiple: true} %>
+  <%= f.submit "Suchen" %>
+<% end %>
+
+<script>
+    $(document).ready(function(){
+
+        $( "#main_search" ).keyup(function() {
+          if ($( "#main_search" ).val().length > 2){
+            if ($( "#main-search-results" ).html() != "<div class=\"mx-auto loader\"></div>"){
+              $( "#main-search-results" ).html( "<div class=\"mx-auto loader\"></div>" );
+            }
+            $('#triggersearch-main').click();
+          }
+        });
+    });
+</script>

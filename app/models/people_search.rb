@@ -13,15 +13,18 @@ class PeopleSearch
   def search
     query = Person.all
 
-      unless @tags.nil?
-        query = find_people_tagged_with(query, @tags, @tag_option)
+      unless @tags.nil? || @tags.empty?
+        tags = @tags.reject { |c| c.blank? }
+        unless tags.empty?
+          query = find_people_tagged_with(query, tags, @tag_option)
+        end
       end
 
-      unless @search_term.nil?
-        query = query.search_people_ilike(@search_term)
+      unless @search_term.nil? || @search_term.blank?
+        query = query.search_people_ilike("%#{@search_term}%")
       end
 
-      unless @institutions.nil?
+      unless @institutions.nil? || @institutions.empty?
         puts query.inspect
         puts @institutions.pluck(:id).inspect
         query = query.includes(:institutions).where(institutions: {id: @institutions.pluck(:id)})

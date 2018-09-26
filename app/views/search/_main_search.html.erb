@@ -1,0 +1,11 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <h3 class="card-title text-center">Allgemeine Suche</h3>
+    <hr>
+      <%= render "search/main_search_form" %>
+    <hr>
+    <div id="main-search-results">
+      <%= render partial: "people/person", collection: people, as: :person %>
+    </div>
+  </div>
+</div>

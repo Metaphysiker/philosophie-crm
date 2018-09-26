@@ -1,0 +1,8 @@
+var divid = "#main-search-results";
+
+$( divid ).fadeOut( "slow", function() {
+
+    x = $("<%= escape_javascript( render partial: 'people/person', collection: @people, as: :person ) %>")
+    $(divid).empty().append(x).fadeIn("slow");
+
+});

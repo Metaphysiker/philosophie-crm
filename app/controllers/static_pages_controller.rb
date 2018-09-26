@@ -9,4 +9,8 @@ class StaticPagesController < ApplicationController
     @tasks = Task.all
     @institutions = Institution.all
   end
+
+  def search
+    @people = Person.includes(:notes).last(20)
+  end
 end
