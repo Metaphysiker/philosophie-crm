@@ -1,18 +1,1 @@
-<div class="container">
-  <% @audits.each do |audit| %>
-    Änderungen:
-    <% audit.audited_changes.each do |c| %>
-      <p>
-          Änderung von <b><%= audit.user.username %></b>
-      </p>
-      <p>
-        Typ der Änderung: <%= audit.action %>
-      </p>
-      <p>
-        <%= c[0] %>: Von "<%= c[1][0] %>" zu "<%= c[1][1] %>"
-      </p>
-    <% end %>
 
-    <hr />
-  <% end %>
-</div>
