@@ -13,4 +13,8 @@ class StaticPagesController < ApplicationController
   def search
     @people = Person.includes(:notes).last(20)
   end
+
+  def activities
+    @versions = PaperTrail::Version.order(:created_at => :desc).limit(20)
+  end
 end

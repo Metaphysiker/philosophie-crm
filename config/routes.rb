@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   root 'static_pages#main'
   get '/search', to: 'static_pages#search', as: 'search'
+  get '/activities', to: 'static_pages#activities', as: 'activities'
 
   get '/upload_page', to: 'import#upload_page', as: 'upload_page'
   post '/import_people', to: 'import#people', as: 'import_people'

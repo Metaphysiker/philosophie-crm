@@ -13,6 +13,10 @@ class PeopleSearch
   def search
     query = Person.all
 
+    unless @search_term.nil? || @search_term.blank?
+      query = query.search_people_ilike("%#{@search_term}%")
+    end
+
     unless @institutions.nil? || @institutions.empty?
       institutions = @institutions.reject { |c| c.blank? }
       institutions = institutions.collect {|x| x.to_i}
@@ -26,10 +30,6 @@ class PeopleSearch
         unless tags.empty?
           query = find_people_tagged_with(query, tags, @tag_option)
         end
-      end
-
-      unless @search_term.nil? || @search_term.blank?
-        query = query.search_people_ilike("%#{@search_term}%")
       end
 
       query

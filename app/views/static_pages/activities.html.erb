@@ -1,0 +1,9 @@
+<div class="container">
+  <% @versions.each do |version| %>
+    <%= version.inspect %>
+    <p>
+      <%= simple_format(version.object) unless version.object.nil? %>
+    </p>
+    <hr />
+  <% end %>
+</div>
