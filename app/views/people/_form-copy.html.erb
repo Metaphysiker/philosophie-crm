@@ -3,6 +3,7 @@
   <%= f.input :lastname %>
   <%= f.input :email %>
   <%= f.input :phone %>
+    <%#= f.input :tag_list, as: :select, collection: TagList.all, label_method: :name, value_method: :name, input_html: {class: 'chosen-select', multiple: true} %>
 
   Tags<br>
   <%= f.collection_check_boxes(:tag_list, TagList.all , :name, :name) do |b| %>

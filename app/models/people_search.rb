@@ -16,7 +16,9 @@ class PeopleSearch
     unless @institutions.nil? || @institutions.empty?
       institutions = @institutions.reject { |c| c.blank? }
       institutions = institutions.collect {|x| x.to_i}
-      query = query.includes(:institutions).where(institutions: {id: institutions})
+      unless institutions.empty?
+        query = query.includes(:institutions).where(institutions: {id: institutions})
+      end
     end
 
       unless @tags.nil? || @tags.empty?

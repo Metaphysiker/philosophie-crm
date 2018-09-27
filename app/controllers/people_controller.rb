@@ -24,6 +24,7 @@ class PeopleController < ApplicationController
   # POST /people
   # POST /people.json
   def create
+    puts params.inspect
     @person = Person.new(person_params)
     puts person_params.inspect
 
@@ -86,7 +87,7 @@ class PeopleController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
-      params.require(:person).permit(:firstname, :lastname, :email, :phone, :tag_list => [])
+      params.require(:person).permit(:firstname, :lastname, :email, :phone, :institution_ids => [], :tag_list => [])
     end
 
 end
