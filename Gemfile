@@ -5,13 +5,14 @@ ruby '2.5.1'
 
 
 require 'csv'
+
+gem "audited", "~> 4.7"
 gem 'chosen-rails'
 gem 'activerecord-import'
 gem 'pg_search'
 gem 'acts-as-taggable-on', '~> 6.0'
 gem "font-awesome-rails"
 gem 'devise'
-gem 'paper_trail'
 gem 'simple_form'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.1.3'

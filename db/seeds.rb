@@ -39,3 +39,5 @@ tags.each do |tag|
     name: tag
   )
 end
+
+#rails db:drop && rails db:create && rails db:migrate && rake sync:totalsync && rake db:seed && rake tags:add_tag_to_portal_member

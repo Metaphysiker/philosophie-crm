@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  has_paper_trail
 
   validates :email, uniqueness: true
   # Include default devise modules. Others available are:
