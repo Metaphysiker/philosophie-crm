@@ -15,6 +15,7 @@ class StaticPagesController < ApplicationController
   end
 
   def activities
+     #@activities = PublicActivity::Activity.all
     #@audits = Audited::Audit.last(1)
     #@versions = PaperTrail::Version.order(:created_at => :desc).limit(20)
   end
