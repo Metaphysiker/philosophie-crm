@@ -9,6 +9,8 @@ class Person < ApplicationRecord
   validates :email, presence: true
   validates :email, uniqueness: true
 
+  audited
+
   acts_as_taggable
 
   scope :search_people_ilike, ->(search_term) { where("firstname ILIKE ? OR lastname ILIKE ? OR email ILIKE ? OR phone ILIKE ? OR login ILIKE ?", search_term, search_term, search_term, search_term, search_term) }

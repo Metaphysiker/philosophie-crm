@@ -1,2 +1,33 @@
-
-<%= render_activities(@activities) %>
+<div class="container">
+  <div class="card mb-3">
+    <div class="card-header text-center">
+      <h1>Aktivitäten</h1>
+    </div>
+    <div class="card-body">
+      <% Person.order(:updated_at).last(20).reverse.each do |person| %>
+        <p>
+          <b>Änderung von: </b><%= person.audits.last.user.username || "Skript von Sandro" %>
+        </p>
+        <p>
+          <b>Aktivität: </b><%= person.audits.last.action %>
+        </p>
+        <p>
+          <b>Datum: </b><%= person.audits.last.created_at.strftime("%d.%m.%Y %H:%M") %>
+        </p>
+        <p>
+          <% person.audits.last.audited_changes.each do |c| %>
+          <% next if c[1].nil? %>
+          <% next if c[1][0] == c[1][1]%>
+            <%= c[0] %>:
+            <%= c[1] unless c[1].is_a? Enumerable %>
+            <% if c[1].is_a? Enumerable %>
+              Von "<%= c[1][0] %>" zu "<%= c[1][1] %>".
+            <% end %>
+            <br />
+          <% end %>
+        </p>
+        <hr />
+      <% end %>
+    </div>
+  </div>
+</div>
