@@ -17,10 +17,26 @@ class Person < ApplicationRecord
   scope :search_people_ilike, ->(search_term) { where("firstname ILIKE ? OR lastname ILIKE ? OR email ILIKE ? OR phone ILIKE ? OR login ILIKE ? OR name ILIKE ?", search_term, search_term, search_term, search_term, search_term, search_term) }
 
   include PgSearch
+
   pg_search_scope :search_people, :against => [:firstname, :lastname, :email, :phone, :login, :name],
                                   :using => {
                                     :tsearch => {:prefix => true, :any_word => true}
                                   }
+
+  pg_search_scope :search_people_institutions,
+    :against => [:firstname, :lastname, :email, :phone, :login, :name],
+    :associated_against => {
+      :institutions => [:name]
+    },
+    :using => {
+      :trigram => {
+        :threshold => 0.3
+      },
+      :tsearch => {
+        :any_word => true,
+        :prefix => true
+      }
+    }
 
   pg_search_scope :search_people_trigram, :against => [:firstname, :lastname, :email, :phone, :login, :name],
                                   :using => {
@@ -28,6 +44,7 @@ class Person < ApplicationRecord
                                       :threshold => 0.3
                                     },
                                     :tsearch => {
+                                      :any_word => true,
                                       :prefix => true
                                     }
                                   }
