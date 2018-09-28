@@ -1,4 +1,5 @@
 class Person < ApplicationRecord
+  after_save :set_name
 
   has_many :notes, as: :noteable
   has_many :tasks, as: :taskable
@@ -13,15 +14,15 @@ class Person < ApplicationRecord
 
   acts_as_taggable
 
-  scope :search_people_ilike, ->(search_term) { where("firstname ILIKE ? OR lastname ILIKE ? OR email ILIKE ? OR phone ILIKE ? OR login ILIKE ?", search_term, search_term, search_term, search_term, search_term) }
+  scope :search_people_ilike, ->(search_term) { where("firstname ILIKE ? OR lastname ILIKE ? OR email ILIKE ? OR phone ILIKE ? OR login ILIKE ? OR name ILIKE ?", search_term, search_term, search_term, search_term, search_term, search_term) }
 
   include PgSearch
-  pg_search_scope :search_people, :against => [:firstname, :lastname, :email, :phone, :login],
+  pg_search_scope :search_people, :against => [:firstname, :lastname, :email, :phone, :login, :name],
                                   :using => {
                                     :tsearch => {:prefix => true, :any_word => true}
                                   }
 
-  pg_search_scope :search_people_trigram, :against => [:firstname, :lastname, :email, :phone, :login],
+  pg_search_scope :search_people_trigram, :against => [:firstname, :lastname, :email, :phone, :login, :name],
                                   :using => {
                                     :trigram => {
                                       :threshold => 0.3
@@ -32,7 +33,24 @@ class Person < ApplicationRecord
                                   }
   #multisearchable :against => [:firstname, :lastname, :email, :phone, :login]
 
-  def name
+  def set_name
+    name = ""
+
+    if self.firstname.blank? && self.lastname.blank?
+      unless self.login.blank?
+        name = self.login
+      else
+        name = self.email
+      end
+    else
+      name = "#{self.firstname} #{self.lastname}"
+    end
+
+    self.update_column(:name, name)
+    #self.name = "Ferdinand"
+  end
+
+  def name_legacy
     if self.firstname.blank? && self.lastname.blank?
       unless self.login.blank?
         return self.login
