@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <div id="sideoverview">
+        <div class="list-group" id="list-tab" role="tablist">
+          <a class="list-group-item text-center">
+            <h3>Team</h3>
+          </a>
+          <% User.all.each do |user| %>
+          <a class="list-group-item list-group-item-action flex-column align-items-start" data-toggle="list" href="#list-user-<%= user.id %>" role="tab">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1"><%= fa_icon "user" %> <%= user.username %></h5>
+              <hr>
+            </div>
+            <p>
+              <b>Aufgaben zu erledigen: </b><%= Task.where(creator_id: user.id).count %>
+            </p>
+            <p>
+              <b>Aktivität: </b><%= Audited::Audit.where(user_id: user.id).count %>
+            </p>
+          </a>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+      <div class="col-8">
+        <div id="content">
+          <div class="tab-content" id="nav-tabContent">
+            <% User.all.each do |user| %>
+              <div class="tab-pane fade show" id="list-user-<%= user.id %>" role="tabpanel">
+                <div class="card mb-3">
+                  <div class="card-header text-center">
+                    <h3 class="card-title"><%= user.username %></h3>
+                  </div>
+                  <div class="card-body">
+                    <h3 class="card-title text-center">Team</h3>
+                    <hr>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

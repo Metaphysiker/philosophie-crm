@@ -14,8 +14,8 @@ class PeopleSearch
     query = Person.all
 
     unless @search_term.nil? || @search_term.blank?
-      #query = query.search_people_ilike("%#{@search_term}%")
-      query = query.search_people_trigram(@search_term)
+      query = query.search_people_ilike("%#{@search_term}%")
+      #query = query.search_people_trigram(@search_term)
     end
 
     unless @institutions.nil? || @institutions.empty?
