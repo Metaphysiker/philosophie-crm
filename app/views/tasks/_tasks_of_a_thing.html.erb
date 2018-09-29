@@ -5,7 +5,7 @@
       Keine Aufgaben vorhanden.
     </div>
   <% else %>
-    <%= render partial: "tasks/task", collection: parent.tasks, as: :task %>
+    <%= render partial: "tasks/task", collection: parent.tasks, as: :task, locals: {parent: parent} %>
   <% end %>
 
   <p>

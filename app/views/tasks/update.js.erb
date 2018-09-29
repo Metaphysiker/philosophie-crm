@@ -1,0 +1,9 @@
+var div_id = "#task-<%= @task.id %>";
+
+$( div_id ).fadeOut( "slow", function() {
+
+    x = $("<%= escape_javascript( render "tasks/task", task: @task, parent: @task.taskable ) %>")
+
+    $(div_id).empty().append(x).fadeIn("slow");
+
+});

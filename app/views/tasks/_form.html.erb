@@ -23,6 +23,6 @@
   <%= f.hidden_field :taskable_type, value: parent.class.to_s %>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: "btn-primary", id: "task-#{task.id}-edit-button" %>
   </div>
 <% end %>
