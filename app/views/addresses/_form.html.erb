@@ -1,5 +1,5 @@
 
-<%= simple_form_for(@address) do |f| %>
+<%= simple_form_for(address, remote: true) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
@@ -12,6 +12,8 @@
     <%= f.input :plz %>
     <%= f.input :location %>
     <%= f.input :country %>
+    <%= f.hidden_field :addressable_id, value: parent.id %>
+    <%= f.hidden_field :addressable_type, value: parent.class.to_s %>
   </div>
 
   <div class="form-actions">

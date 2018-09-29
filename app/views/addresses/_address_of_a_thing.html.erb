@@ -1,0 +1,10 @@
+<h3 class="card-title">Adresse: </h3>
+
+  <% if parent.address.nil? %>
+    <div class="card card-body mb-3">
+      Keine Adresse vorhanden.
+    </div>
+
+  <% else %>
+    <%= render "addresses/address", address: parent.address %>
+  <% end %>

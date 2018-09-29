@@ -1,9 +1,10 @@
 class Person < ApplicationRecord
   after_save :set_name
+  after_create :create_address
 
   has_many :notes, as: :noteable
   has_many :tasks, as: :taskable
-  has_many :addresses, as: :addressable
+  has_one :address, as: :addressable
 
   has_many :affiliations
   has_many :institutions, :through => :affiliations
@@ -66,6 +67,13 @@ class Person < ApplicationRecord
 
     self.update_column(:name, name)
     #self.name = "Ferdinand"
+  end
+
+  def create_address
+    Address.create(
+      addressable_id: self.id,
+      addressable_type: Person
+    )
   end
 
   def name_legacy

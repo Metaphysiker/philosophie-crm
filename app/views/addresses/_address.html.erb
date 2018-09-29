@@ -1,0 +1,48 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <p>
+      <strong>Form of address:</strong>
+      <%= address.form_of_address %>
+    </p>
+
+    <p>
+      <strong>Firstname:</strong>
+      <%= address.firstname %>
+    </p>
+
+    <p>
+      <strong>Lastname:</strong>
+      <%= address.lastname %>
+    </p>
+
+    <p>
+      <strong>Company:</strong>
+      <%= address.company %>
+    </p>
+
+    <p>
+      <strong>Street:</strong>
+      <%= address.street %>
+    </p>
+
+    <p>
+      <strong>Plz:</strong>
+      <%= address.plz %>
+    </p>
+
+    <p>
+      <strong>Location:</strong>
+      <%= address.location %>
+    </p>
+
+    <p>
+      <strong>Country:</strong>
+      <%= address.country %>
+    </p>
+  </div>
+  <div class="card-footer">
+    <p>
+      <b>Erstellt:</b> <%= address.created_at.strftime("%d.%m.%Y %H:%M") %> - von <b><%#= User.find(address.creator_id).username unless !User.exists?(address.creator_id) %></b>
+    </p>
+  </div>
+</div>

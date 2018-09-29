@@ -1,4 +1,8 @@
 <p>
+  <a class="btn btn-link btn-sm" data-toggle="collapse" href="#address-<%= parent.id %>-<%= parent.class.to_s.downcase %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <%= fa_icon "address-card" %> Adresse anzeigen
+  </a>
+
   <a class="btn btn-link btn-sm" data-toggle="collapse" href="#notes-<%= parent.id %>-<%= parent.class.to_s.downcase %>" role="button" aria-expanded="false" aria-controls="collapseExample">
     <%= fa_icon "sticky-note" %> Notizen anzeigen
   </a>
@@ -8,6 +12,10 @@
   </a>
 
 </p>
+
+<div class="collapse mb-2" id="address-<%= parent.id %>-<%= parent.class.to_s.downcase %>" %>
+  <%= render "addresses/address_of_a_thing", parent: parent %>
+</div>
 
 <div class="collapse mb-2" id="notes-<%= parent.id %>-<%= parent.class.to_s.downcase %>" %>
   <%= render "notes/notes_of_a_thing", parent: parent %>
