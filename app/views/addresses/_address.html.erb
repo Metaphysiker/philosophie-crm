@@ -1,43 +1,96 @@
-<div class="card mb-3">
-  <div class="card-body">
-    <p>
-      <strong>Form of address:</strong>
-      <%= address.form_of_address %>
-    </p>
+<div id="address-<%= address.id %>">
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-10">
+          <p>
+            <strong>Form of address:</strong>
+            <%= address.form_of_address %>
+          </p>
 
-    <p>
-      <strong>Firstname:</strong>
-      <%= address.firstname %>
-    </p>
+          <p>
+            <strong>Firstname:</strong>
+            <%= address.firstname %>
+          </p>
 
-    <p>
-      <strong>Lastname:</strong>
-      <%= address.lastname %>
-    </p>
+          <p>
+            <strong>Lastname:</strong>
+            <%= address.lastname %>
+          </p>
 
-    <p>
-      <strong>Company:</strong>
-      <%= address.company %>
-    </p>
+          <p>
+            <strong>Company:</strong>
+            <%= address.company %>
+          </p>
 
-    <p>
-      <strong>Street:</strong>
-      <%= address.street %>
-    </p>
+          <p>
+            <strong>Street:</strong>
+            <%= address.street %>
+          </p>
 
-    <p>
-      <strong>Plz:</strong>
-      <%= address.plz %>
-    </p>
+          <p>
+            <strong>Plz:</strong>
+            <%= address.plz %>
+          </p>
 
-    <p>
-      <strong>Location:</strong>
-      <%= address.location %>
-    </p>
+          <p>
+            <strong>Location:</strong>
+            <%= address.location %>
+          </p>
 
-    <p>
-      <strong>Country:</strong>
-      <%= address.country %>
-    </p>
+          <p>
+            <strong>Country:</strong>
+            <%= address.country %>
+          </p>
+        </div>
+        <div class="col-2">
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#address-<%= address.id %>-edit">
+            <%= fa_icon "edit" %>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="address-<%= address.id %>-edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Notiz bearbeiten</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <%= render "addresses/form", address: address, parent: address.addressable %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Schliessen</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<script>
+$( document ).ready(function() {
+
+var address_div = $("address-<%= address.id %>-edit");
+
+$('.chosen-select').chosen({
+  allow_single_deselect: true,
+  no_results_text: 'Nichts gefunden',
+  inherit_select_classes: false,
+  search_contains: true,
+  width: '100%'
+});
+
+$('#address-<%= address.id %>-edit-button').click(function(){
+  $('#address-<%= address.id %>-edit').modal('toggle');
+});
+
+});
+</script>

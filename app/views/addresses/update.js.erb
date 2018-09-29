@@ -1,0 +1,9 @@
+var div_id = "#address-<%= @address.id %>";
+
+$( div_id ).fadeOut( "slow", function() {
+
+    x = $("<%= escape_javascript( render "addresses/address", address: @address, parent: @address.addressable ) %>")
+
+    $(div_id).empty().append(x).fadeIn("slow");
+
+});
