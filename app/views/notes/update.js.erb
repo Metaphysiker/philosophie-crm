@@ -1,0 +1,9 @@
+var div_id = "#note-<%= @note.id %>";
+
+$( div_id ).fadeOut( "slow", function() {
+
+    x = $("<%= escape_javascript( render "notes/note", note: @note, parent: @note.noteable ) %>")
+
+    $(div_id).empty().append(x).fadeIn("slow");
+
+});

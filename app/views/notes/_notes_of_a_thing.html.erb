@@ -6,7 +6,7 @@
     </div>
 
   <% else %>
-    <%= render partial: "notes/note", collection: parent.notes, as: :note %>
+    <%= render partial: "notes/note", collection: parent.notes, as: :note, locals: {parent: parent} %>
   <% end %>
 
   <p>
