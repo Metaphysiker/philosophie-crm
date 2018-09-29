@@ -72,12 +72,22 @@
 <script>
   $( document ).ready(function() {
 
+    var person_div = $("person-<%= person.id %>-edit");
+
     $('.chosen-select').chosen({
       allow_single_deselect: true,
       no_results_text: 'Nichts gefunden',
       inherit_select_classes: false,
       search_contains: true,
       width: '100%'
+    });
+
+    $('#person-<%= person.id %>-edit input#person_email').change(function(){
+      if( !$('#person-<%= person.id %>-edit input#person_email').val() ){
+        $('#person-<%= person.id %>-edit-button').addClass('disabled').prop("disabled", true);
+      } else {
+        $('#person-<%= person.id %>-edit-button').removeClass('disabled').prop("disabled", false);
+      }
     });
 
     $('#person-<%= person.id %>-edit-button').click(function(){
