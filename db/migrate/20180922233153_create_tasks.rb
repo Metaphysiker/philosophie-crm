@@ -6,6 +6,7 @@ class CreateTasks < ActiveRecord::Migration[5.2]
       t.integer :priority
       t.integer :assigned_to_user_id
       t.integer :creator_id
+      t.boolean :deleted, default: false
       t.references :taskable, polymorphic: true, index: true
       t.timestamps
     end

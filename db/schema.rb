@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(version: 2018_09_29_075733) do
     t.integer "priority"
     t.integer "assigned_to_user_id"
     t.integer "creator_id"
+    t.boolean "deleted", default: false
     t.string "taskable_type"
     t.bigint "taskable_id"
     t.datetime "created_at", null: false
