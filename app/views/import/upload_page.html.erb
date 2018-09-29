@@ -1,21 +1,45 @@
 <div class="container">
-  <h4>Personen importieren</h4>
-  <p>
-    <b>CSV benötigt folgende Header: </b>
-    <br>
-    firstname | lastname | email | phone | tag
-  </p>
-  <p>
-    Tags müssen mit einem " | " getrennt werden. Beispiel: Sponsor | Mitglied | Stiftungsmitglied
-  </p>
-  <p>
-    <b>Wichtig!</b> Die Abstände müssen richtig sein. Das geht nicht: Sponsor|  Mitglied |Stiftungsmitglied
-  </p>
-  <%= form_tag import_people_path, multipart: true do %>
-    <%= file_field_tag :file %>
-    <br>
-    <br>
-    <%= submit_tag "Importieren" %>
-  <% end %>
-
+  <div class="container">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h4>Personen importieren</h4>
+        <p>
+          <b>CSV benötigt folgende Header: </b>
+          "firstname | lastname | email | phone | tag"
+        </p>
+        <p>
+          Tags müssen mit einem " | " getrennt werden. Beispiel: "Sponsor | Mitglied | Stiftungsmitglied"
+        </p>
+        <p>
+          <b>Wichtig!</b> Die Abstände müssen richtig sein. Das geht nicht: "Sponsor|  Mitglied |Stiftungsmitglied"
+        </p>
+        <%= form_tag import_people_path, multipart: true do %>
+          <%= file_field_tag :file, class: "btn btn-secondary" %>
+          <br>
+          <br>
+          <%= submit_tag "Importieren", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      <hr />
+      <div class="card-body">
+        <h4>Institutionen importieren</h4>
+        <p>
+          <b>CSV benötigt folgende Header: </b>
+          firstname | lastname | email | phone | tag
+        </p>
+        <p>
+          Tags müssen mit einem " | " getrennt werden. Beispiel: Sponsor | Mitglied | Stiftungsmitglied
+        </p>
+        <p>
+          <b>Wichtig!</b> Die Abstände müssen richtig sein. Das geht nicht: Sponsor|  Mitglied |Stiftungsmitglied
+        </p>
+        <%= form_tag import_people_path, multipart: true do %>
+          <%= file_field_tag :file, class: "btn btn-secondary" %>
+          <br>
+          <br>
+          <%= submit_tag "Importieren", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

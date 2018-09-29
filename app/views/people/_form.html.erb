@@ -1,4 +1,4 @@
-<%= simple_form_for person do |f| %>
+<%= simple_form_for person, remote: true do |f| %>
   <%= f.input :firstname %>
   <%= f.input :lastname %>
   <%= f.input :email %>
@@ -6,5 +6,5 @@
   <%= f.input :tag_list, as: :select, collection: TagList.all, label_method: :name, value_method: :name, input_html: {class: 'chosen-select', multiple: true} %>
   <br>
   <%= f.association :institutions, as: :select, collection: Institution.all, label_method: :name, value_method: :id, input_html: {class: 'chosen-select', multiple: true} %>
-  <%= f.button :submit %>
+  <%= f.button :submit, id: "person-#{person.id}-edit-button" %>
 <% end %>

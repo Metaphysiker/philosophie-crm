@@ -26,6 +26,7 @@ class PeopleController < ApplicationController
   def create
     puts params.inspect
     @person = Person.new(person_params)
+    @person.creator_id = current_user.id
     puts person_params.inspect
 
     respond_to do |format|
@@ -46,9 +47,11 @@ class PeopleController < ApplicationController
       if @person.update(person_params)
         format.html { redirect_to @person, notice: 'Person was successfully updated.' }
         format.json { render :show, status: :ok, location: @person }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @person.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

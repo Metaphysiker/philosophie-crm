@@ -1,0 +1,9 @@
+var div_id = "#person-<%= @person.id %>";
+
+$( div_id ).fadeOut( "slow", function() {
+
+    x = $("<%= escape_javascript( render "people/person", person: @person ) %>")
+
+    $(div_id).empty().append(x).fadeIn("slow");
+
+});

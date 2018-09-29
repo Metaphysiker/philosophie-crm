@@ -1,35 +1,80 @@
-<p class="card-text">
-    <b>Name:</b> <%= link_to "#{person.firstname} #{person.lastname}", person_path(person) %>
-</p>
+<div id="person-<%= person.id %>">
+  <div class="row">
+    <div class="col-10">
+      <p class="card-text">
+          <b>Name:</b> <%= link_to "#{person.firstname} #{person.lastname}", person_path(person) %>
+      </p>
 
-<% unless person.login.nil? %>
-  <p class="card-text">
-      <b>Login:</b> <%= link_to person.login, person_path(person) %>
-  </p>
-<% end %>
+      <% unless person.login.nil? %>
+        <p class="card-text">
+            <b>Login:</b> <%= link_to person.login, person_path(person) %>
+        </p>
+      <% end %>
 
-<p class="card-text">
-    <b>e-Mail:</b> <%= mail_to person.email %>
-</p>
+      <p class="card-text">
+          <b>e-Mail:</b> <%= mail_to person.email %>
+      </p>
+      <% unless person.institutions.empty? %>
+        <p> <b>Ist Mitglied bei:</b>
+          <ul>
+          <% person.institutions.each do |institution| %>
+            <li><button type="button" class="btn btn-link"><%= institution.name %></button></li>
+          <% end %>
+        </ul>
+        </p>
+      <% end %>
+    </div>
 
-<% unless person.institutions.empty? %>
-  <p> <b>Ist Mitglied bei:</b>
-    <ul>
-    <% person.institutions.each do |institution| %>
-      <li><button type="button" class="btn btn-link"><%= institution.name %></button></li>
-    <% end %>
-  </ul>
-  </p>
-<% end %>
+    <div class="col-2">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#person-<%= person.id %>-edit">
+        <%= fa_icon "edit" %>
+      </button>
+    </div>
+  </div>
 
-<% unless person.tag_list.empty? %>
-  <p>
-    <% person.tag_list.each do |tag| %>
-      <button type="button" class="btn btn-outline-dark m-1"><%= tag %></button>
-    <% end %>
-  </p>
-<% end %>
 
-<%= render "shared/notes_and_tasks", parent: person %>
 
-<hr>
+  <% unless person.tag_list.empty? %>
+    <p class="mt-2">
+      <% person.tag_list.each do |tag| %>
+        <button type="button" class="btn btn-outline-dark m-1"><%= tag %></button>
+      <% end %>
+    </p>
+  <% end %>
+
+  <%= render "shared/notes_and_tasks", parent: person %>
+
+  <hr>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="person-<%= person.id %>-edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Person bearbeiten</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <%= render "people/form", person: person %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $( document ).ready(function() {
+    $('#person-<%= person.id %>-edit-button').click(function(){
+      $('#person-<%= person.id %>-edit').modal('toggle');
+    });
+
+  });
+</script>
