@@ -1,4 +1,6 @@
 class Institution < ApplicationRecord
+  after_create :create_address
+
   has_many :affiliations
   has_many :people, :through => :affiliations
 
@@ -25,4 +27,12 @@ class Institution < ApplicationRecord
                                       :prefix => true
                                     }
                                   }
+
+  def create_address
+    Address.create(
+      addressable_id: self.id,
+      addressable_type: Institution
+    )
+  end
+
 end

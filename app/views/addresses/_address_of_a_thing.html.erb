@@ -6,5 +6,5 @@
     </div>
 
   <% else %>
-    <%= render "addresses/address", address: parent.address %>
+    <%= render "addresses/address", address: parent.address, parent: parent %>
   <% end %>

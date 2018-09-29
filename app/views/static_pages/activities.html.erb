@@ -6,7 +6,9 @@
     <div class="card-body">
       <% Person.order(:updated_at).last(20).reverse.each do |person| %>
         <p>
-          <b>Änderung von: </b><%= person.audits.last.user.username || "Skript von Sandro" %>
+          <b>Änderung von: </b>
+          <%= person.audits.last.user.username unless person.audits.last.user.nil? %>
+          <%= "Sandros Skript - Probleme an sandro.raess@philosophie.ch" if person.audits.last.user.nil? %>
         </p>
         <p>
           <b>Aktivität: </b><%= person.audits.last.action %>
