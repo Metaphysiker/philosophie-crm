@@ -1,5 +1,10 @@
 <div id="note-<%= note.id %>">
   <div class="card mb-3">
+    <% if local_assigns.has_key? :show_headers %>
+    <div class="card-header">
+      <%= note.noteable.name %> - <%= note.noteable_type %>
+    </div>
+    <% end %>
     <div class="card-body">
       <div class="row">
         <div class="col-10">
@@ -33,7 +38,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <%= render "notes/form", note: note, parent: parent %>
+          <%= render "notes/form", note: note, parent: note.noteable %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Schliessen</button>

@@ -43,3 +43,8 @@
   transition: background-color 0.5s ease;
   background-color: #7FFF00;
 }
+
+.checked_task{
+  background: radial-gradient(at top left, greenyellow, limegreen);
+  //background-color: #33ff33;
+}
