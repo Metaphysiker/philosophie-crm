@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   resources :addresses
-  #resources
   resources :institutions
   resources :tasks
   resources :tag_lists
@@ -12,6 +11,9 @@ Rails.application.routes.draw do
 
   #users
   get '/users/:id', to: 'users#show', as: 'user'
+
+  #tasks
+  get '/check_task/:id', to: 'tasks#check_task', as: 'check_task'
 
   #static_pages
   root 'static_pages#main'

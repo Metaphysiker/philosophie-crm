@@ -32,7 +32,6 @@ class PeopleSearch
           query = find_people_tagged_with(query, tags, @tag_option)
         end
       end
-
       query
     end
 

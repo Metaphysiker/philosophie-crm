@@ -137,9 +137,11 @@ ActiveRecord::Schema.define(version: 2018_09_29_075733) do
     t.text "description"
     t.datetime "deadline"
     t.integer "priority"
+    t.integer "time_needed"
     t.integer "assigned_to_user_id"
     t.integer "creator_id"
     t.boolean "deleted", default: false
+    t.boolean "done", default: false
     t.string "taskable_type"
     t.bigint "taskable_id"
     t.datetime "created_at", null: false
