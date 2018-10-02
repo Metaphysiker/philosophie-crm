@@ -1,5 +1,6 @@
 example_id                          | status | run_time        |
 ----------------------------------- | ------ | --------------- |
-./spec/features/login_spec.rb[1:1]  | passed | 0.22625 seconds |
-./spec/models/person_spec.rb[1:1:1] | passed | 0.11665 seconds |
-./spec/models/person_spec.rb[1:1:2] | passed | 0.00322 seconds |
+./spec/features/login_spec.rb[1:1]  | passed | 0.27511 seconds |
+./spec/features/tasks_spec.rb[1:1]  | failed | 0.31436 seconds |
+./spec/models/person_spec.rb[1:1:1] | passed | 0.00379 seconds |
+./spec/models/person_spec.rb[1:1:2] | passed | 0.12455 seconds |
