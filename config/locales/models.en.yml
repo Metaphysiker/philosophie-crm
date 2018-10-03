@@ -1,0 +1,12 @@
+en:
+  activerecord:
+    models:
+      person: "Person"
+    attributes:
+      person:
+        name: "Name"
+        firstname: "Vorname"
+        lastname: "Nachname"
+        email: "e-Mail"
+        phone: "Telefon"
+      # will translate User attribute "login" as "Handle"

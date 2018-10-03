@@ -6,6 +6,7 @@ ruby '2.5.1'
 
 require 'csv'
 
+gem 'rails-i18n', '~> 5.1'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem "audited", "~> 4.7"
 gem 'chosen-rails'
