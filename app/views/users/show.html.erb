@@ -1,15 +1,3 @@
 <div class="container">
-  <div class="card mb-3">
-    <div class="card-header">
-      <%= @user.username %>
-    </div>
-    <div class="card-body">
-      Beschreibung
-    </div>
-  </div>
-
-  <p>
-  <b>Aufgaben von <%= @user.username %></b>
-  </p>
-  <%= render partial: "tasks/task_with_parent", collection: Task.where(assigned_to_user_id: @user.id), as: :task %>
+  <%= render "users/show", user: @user %>
 </div>

@@ -2,6 +2,9 @@ de:
   activerecord:
     models:
       person: "Person"
+      task: "Aufgabe"
+      address: "Adresse"
+      note: "Notiz"
     attributes:
       person:
         name: "Name"
@@ -11,4 +14,12 @@ de:
         phone: "Telefon"
         tag_list: "Tags"
         institutions: "Institutionen"
-      # will translate User attribute "login" as "Handle"
+      address:
+        form_of_address: "Anrede"
+        firstname: "Vorname"
+        lastname: "Nachname"
+        company: "Firma"
+        street: "Strasse"
+        plz: "PLZ"
+        location: "Ort"
+        country: "Land"
