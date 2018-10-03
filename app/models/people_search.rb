@@ -11,9 +11,11 @@ class PeopleSearch
   end
 
   def search
+
     query = Person.all
 
     unless @search_term.nil? || @search_term.blank?
+      #array_of_arrays_with_ids << Person.search_people_ilike("%#{@search_term}%").pluck(:id)
       query = query.search_people_ilike("%#{@search_term}%")
       #query = query.search_people_trigram(@search_term)
     end
@@ -23,6 +25,7 @@ class PeopleSearch
       institutions = institutions.collect {|x| x.to_i}
       unless institutions.empty?
         query = query.includes(:institutions).where(institutions: {id: institutions})
+        #array_of_arrays_with_ids << Person.all.includes(:institutions).where(institutions: {id: institutions}).pluck(:id)
       end
     end
 
@@ -30,8 +33,10 @@ class PeopleSearch
         tags = @tags.reject { |c| c.blank? }
         unless tags.empty?
           query = find_people_tagged_with(query, tags, @tag_option)
+          #array_of_arrays_with_ids << Person.find_people_tagged_with(query, tags, @tag_option).pluck(:id)
         end
       end
+
       query
     end
 
