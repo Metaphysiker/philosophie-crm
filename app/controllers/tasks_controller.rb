@@ -68,7 +68,7 @@ class TasksController < ApplicationController
   end
 
   def check_task
-    unless @task.done
+    unless @task.done == false
       @task.update(done: true)
     else
       @task.update(done: false)

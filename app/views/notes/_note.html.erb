@@ -6,21 +6,19 @@
     </div>
     <% end %>
     <div class="card-body">
-      <div class="row">
-        <div class="col-10">
-          <p class="card-text">
-            <%= simple_format(note.description) %>
-          </p>
-        </div>
-
-        <div class="col-2">
-          <!-- Button trigger modal -->
-          <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target=".note-<%= note.id %>-edit">
-            <%= fa_icon "edit" %>
-          </button>
+      <div class="float-right mb-3">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-light" data-toggle="modal" data-target=".note-<%= note.id %>-edit"><%= fa_icon "edit" %></button>
+          <%= link_to note, method: :delete, data: { confirm: 'Bist du sicher?' } do %>
+            <button type="button" class="btn btn-light"><%= fa_icon "times" %></button>
+          <% end %>
         </div>
       </div>
-
+      <br>
+      <br>
+        <p class="card-text">
+          <%= simple_format(note.description) %>
+        </p>
     </div>
     <div class="card-footer">
       <b>Erstellt:</b> <%= note.created_at.strftime("%d.%m.%Y %H:%M") %>  - von <b><%= User.find(note.creator_id).username unless !User.exists?(note.creator_id) %></b>
@@ -32,7 +30,7 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Notiz bearbeiten</h5>
+          <h5 class="modal-title">Notiz bearbeiten</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

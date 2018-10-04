@@ -1,5 +1,10 @@
 <div id="task-<%= task.id %>">
   <div class="card mb-3">
+    <% if local_assigns.has_key? :show_headers %>
+    <div class="card-header">
+      <%= task.taskable.name %> - <%= task.taskable_type %>
+    </div>
+    <% end %>
     <div class="card-body">
       <div class="float-right mb-3">
         <div class="btn-group" role="group" aria-label="Basic example">
