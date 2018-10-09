@@ -18,4 +18,10 @@
 //= require turbolinks
 //= require chosen-jquery
 //= require scaffold
+//= modalloader
 //= require_tree .
+
+
+$( document ).ready(function() {
+  console.log("javascript loaded");
+});

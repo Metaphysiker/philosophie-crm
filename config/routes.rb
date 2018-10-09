@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   #import and upload
   get '/upload_page', to: 'import#upload_page', as: 'upload_page'
   post '/import_people', to: 'import#people', as: 'import_people'
+  get '/testing', to: 'import#testing', as: 'testing'
 
   #search
   #get '/main_search_form', to: 'search#main_search', as: 'main_search_form'

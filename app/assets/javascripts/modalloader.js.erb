@@ -1,0 +1,17 @@
+$( document ).ready(function() {
+  console.log("Modal-Loader loaded!");
+
+  $('.get-edit-modal-button').click(function(){
+    console.log("get modal-button pressed!");
+    $(this).closest('.unit').find('.modal').modal('toggle');
+    console.log("toggle modal!");
+  });
+
+  $('.close-edit-modal-button').click(function(){
+    console.log("close modal-button pressed!");
+
+    $(this).closest('.unit').find('.modal').modal('toggle');
+    console.log("toggle modal!");
+  });
+
+});

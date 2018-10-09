@@ -11,6 +11,6 @@
   <%= f.hidden_field :noteable_type, value: parent.class.to_s %>
 
   <div class="form-actions">
-    <%= f.button :submit, class: "btn-primary note-#{note.id}-edit-button" %>
+    <%= f.button :submit, class: "btn-primary note-#{note.id}-edit-button close-edit-modal-button" %>
   </div>
 <% end %>

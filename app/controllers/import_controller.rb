@@ -17,4 +17,8 @@ class ImportController < ApplicationController
     redirect_to upload_page_path, notice: "CSV importiert!"
   end
 
+  def testing
+    
+  end
+
 end

@@ -1,4 +1,4 @@
-<div class="note-<%= note.id %>">
+<div class="note-<%= note.id %> unit">
   <div class="card mb-3">
     <% if local_assigns.has_key? :show_headers %>
     <div class="card-header">
@@ -8,7 +8,9 @@
     <div class="card-body">
       <div class="float-right mb-3">
         <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-light" data-toggle="modal" data-target=".note-<%= note.id %>-edit"><%= fa_icon "edit" %></button>
+          <button type="button" class="btn btn-light note-<%= note.id %>-button-to-get-edit-modal get-edit-modal-button">
+            <%= fa_icon "edit" %>
+          </button>
           <%= link_to note, method: :delete, data: { confirm: 'Bist du sicher?' } do %>
             <button type="button" class="btn btn-light"><%= fa_icon "times" %></button>
           <% end %>
@@ -49,18 +51,12 @@
 <script>
 $( document ).ready(function() {
 
-  var note_div = $("note-<%= note.id %>-edit");
-
   $('.chosen-select').chosen({
     allow_single_deselect: true,
     no_results_text: 'Nichts gefunden',
     inherit_select_classes: false,
     search_contains: true,
     width: '100%'
-  });
-
-  $('.note-<%= note.id %>-edit-button').click(function(){
-    $('.note-<%= note.id %>-edit').modal('hide');
   });
 
 });
